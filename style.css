@@ -1,0 +1,33 @@
+html{
+	margin: auto;
+	background-color: white;
+}
+body{
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+	height: auto;
+
+}
+#header{
+	padding: 5px;
+	border : solid 2px black;
+	background-color: #F1F2F2  ;
+	margin-top: 40px;
+	margin-bottom: 30px;
+
+}
+.corps{
+	padding: 5px;
+	border : solid 2px black;
+	background-color: #F1F2F2  ;
+	margin-bottom: 30px;
+
+}
+#footer{
+	padding: 5px;
+	border : solid 2px black;
+	background-color: #F1F2F2  ;
+	margin-bottom: 30px;
+
+}

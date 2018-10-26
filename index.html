@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Projet</title>
+			
+			<meta http-equiv="Content-Type"content="text/html; charset=UTF-8" /> 
+			<link rel="stylesheet"	href="style.css" type="text/css" media="screen"	/>
+			<script type="text/javascript" src="dom.js" ></script>
+			<script>
+			<!-- for (var i=1; i<=40;i++){ -->
+				<!-- var numpage=i -->
+				var url = 'https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&page=2&api_key=c5f2613afb0ffca9cfa80e9'	
+				var result
+				fetch(url).then(function(response){
+					response.json().then(function(film){ 
+						console.log(film)
+					})
+				<!-- }) -->
+			}
+
+			</script>
+		
+		</head>
+		
+		<body>
+		
+		<div id='header'>
+		Laetitia, Maryse, Alexia
+		</div>
+		
+		<div class='corps'>
+		afdsgsfdgsfd<br>
+		fgssfdshg<br>
+		gsgsf
+		</div>
+		
+		<div id='footer'>
+		sdfkjsndjf
+		<div>
+		
+		</body>
+
+	</html>
