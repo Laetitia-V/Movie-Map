@@ -10,55 +10,46 @@
 			
 				<!-- API donnant accès à une base de données renseignant sur des films (acteur, nom, date de sortie etc.. -->
 				<!-- Utilisation principale : données sur les films prochainement à l'affiche -->
-				<!-- var url = 'https://api.themoviedb.org/3/movie/450465?api_key=c5f2613afb0ffca9cfa80e9bb8221eb6'; -->
-				
-				var url = 'https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2018-10-25&primary_release_date.lte=2018-11-02&api_key=c5f2613afb0ffca9cfa80e9bb8221eb6';
-				<!-- discover/movie?primary_release_date.gte=2018-10-26&primary_release_date.lte=2018-11-22 -->
+
+				var url = 'https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2018-11-02&primary_release_date.lte=2018-11-10&api_key=c5f2613afb0ffca9cfa80e9bb8221eb6';
 				
 				fetch(url).then(function(response){
 					response.json().then(function(film){ 
 						console.log(film)
 						var myFilm = document.getElementById('film')
 						for (var i = 0; i < 6; i++){
-							var listItem = document.createElement('li')
-							//document.getElementById('film').innerHTML += film.results[i].title;		
-							document.getElementById('film').innerHTML += '<img src=https://image.tmdb.org/t/p/w185_and_h278_bestv2'+film.results[i].poster_path+'>'	
-							myFilm.appendChild(listItem)
+							// Ajout du titre et date de sortie de chaque film -->
+
+							var titreElt = document.createElement("h2");
+							titreElt.textContent = film.results[i].title;
+							
+							var dateElt = document.createElement("h3");
+							dateElt.textContent = 'Date de sortie : '+film.results[i].release_date;
+
+							var contenuElt = document.createElement("p");
+							
+							myFilm.appendChild(titreElt);
+							myFilm.appendChild(dateElt);
+
+							document.getElementById('film').innerHTML += '<img src=https://image.tmdb.org/t/p/w185_and_h278_bestv2'+film.results[i].poster_path+'>';
+				
+				
 						}
 					})
 				})
 						
 				<!-- API donnant accès à une base de données renseignant sur des films (bande d'annonce, nom, date de sortie etc.. -->
 				<!-- Utilisation principale : bande d'annonce des films prochainement à l'affiche -->
-				var title="https://api.themoviedb.org/3/discover/movie?title=Air_Strike&api_key=c5f2613afb0ffca9cfa80e9bb8221eb6"
-				var release_date=
-				var url2 = 'http://services.cineserie.com/v1/search/movies?q=+'title+'&'+release_date+'=2018-10-31'
-				fetch(url2, {mode:'no-cors'}).then(function(response){
-					response.json().then(function(movie){ 
-						console.log(movie)
-					})
-				})
+				<!-- var title="https://api.themoviedb.org/3/discover/movie?title=Air_Strike&api_key=c5f2613afb0ffca9cfa80e9bb8221eb6" -->
+				<!-- var release_date= -->
+				<!-- var url2 = 'http://services.cineserie.com/v1/search/movies?q=+'title+'&'+release_date+'=2018-10-31' -->
+				<!-- fetch(url2, {mode:'no-cors'}).then(function(response){ -->
+					<!-- response.json().then(function(movie){  -->
+						<!-- console.log(movie) -->
+					<!-- }) -->
+				<!-- }) -->
 				
 											
-				<!-- }) -->
-				//films.forEach(function (film) { -->
-
-				<!-- // Ajout du titre et du contenu de chaque film -->
-
-				<!-- var titreElt = document.createElement("h2"); -->
-
-				<!-- titreElt.textContent = film.name; -->
-
-				<!-- var contenuElt = document.createElement("p"); -->
-
-				<!-- contenuElt.textContent = film.contenu; -->
-
-				<!-- filmsElt.appendChild(titreElt); -->
-
-				<!-- filmsElt.appendChild(contenuElt); -->
-
-			<!-- }); -->
-
 			</script>
 		
 		</head>
@@ -69,9 +60,7 @@
 		Les prochains films à l'affiche
 		</div>
 		
-		<div class='corps'>
-		<ul id='film'></ul>
-		</div>
+		<div class='corps' id='film'></div>
 		
 		<div id='footer'>
 		Master MIASHS
