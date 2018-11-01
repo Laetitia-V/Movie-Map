@@ -6,38 +6,54 @@
 			<meta http-equiv="Content-Type"content="text/html; charset=UTF-8" /> 
 			<link rel="stylesheet"	href="style.css" type="text/css" media="screen"	/>
 			<script type="text/javascript" src="dom.js" ></script>
+			
 			<script>
 			
 				<!-- API donnant accès à une base de données renseignant sur des films (acteur, nom, date de sortie etc.. -->
 				<!-- Utilisation principale : données sur les films prochainement à l'affiche -->
 
-				var url = 'https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2018-11-02&primary_release_date.lte=2018-11-10&api_key=c5f2613afb0ffca9cfa80e9bb8221eb6';
+				//afficher films que du jour meme par default, proposer a l'utilisateur de modifier date?
+				var date = new Date()
+				var day = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+
+				var url = 'https://api.themoviedb.org/3/discover/movie?primary_release_date.gte='+day+'&primary_release_date.lte='+day+'&api_key=c5f2613afb0ffca9cfa80e9bb8221eb6';
 				
 				fetch(url).then(function(response){
 					response.json().then(function(film){ 
 						console.log(film)
+
 						var myFilm = document.getElementById('film')
+						var boutons = document.getElementById('boutons')
+						
+						//possibilité de recuperer tous les films pour dates demandées ? (ici limité à 6 mais il y en a d'autres)
 						for (var i = 0; i < 6; i++){
 							// Ajout du titre et date de sortie de chaque film -->
-
+							
+							var elt = document.createElement("div")
+							elt.className = "slide"
+							
 							var titreElt = document.createElement("h2");
 							titreElt.textContent = film.results[i].title;
 							
 							var dateElt = document.createElement("h3");
 							dateElt.textContent = 'Date de sortie : '+film.results[i].release_date;
 
-							var contenuElt = document.createElement("p");
+							var bouton = document.createElement("span");
+							bouton.className = "dot"
+							//ajouter onclick="currentSlide(i)" pour acceder au film en cliquant sur bouton (juste affichage mais fonctionnent pas)
 							
-							myFilm.appendChild(titreElt);
-							myFilm.appendChild(dateElt);
+							elt.appendChild(titreElt);
+							elt.appendChild(dateElt)
+							myFilm.append(elt)
 
-							document.getElementById('film').innerHTML += '<img src=https://image.tmdb.org/t/p/w185_and_h278_bestv2'+film.results[i].poster_path+'>';
+							elt.innerHTML += '<img src=https://image.tmdb.org/t/p/w185_and_h278_bestv2'+film.results[i].poster_path+'>';
+
+							boutons.append(bouton)
 				
-				
-						}
+						}			
 					})
 				})
-						
+
 				<!-- API donnant accès à une base de données renseignant sur des films (bande d'annonce, nom, date de sortie etc.. -->
 				<!-- Utilisation principale : bande d'annonce des films prochainement à l'affiche -->
 				<!-- var title="https://api.themoviedb.org/3/discover/movie?title=Air_Strike&api_key=c5f2613afb0ffca9cfa80e9bb8221eb6" -->
@@ -48,23 +64,68 @@
 						<!-- console.log(movie) -->
 					<!-- }) -->
 				<!-- }) -->
+
 				
-											
+				//Carousel : 
+				
+				var slideIndex = 1;
+				showSlides(slideIndex);
+
+				//faire défiler les films dans le carousel par clic sur fleches
+				function plusSlides(n) {
+  					showSlides(slideIndex += n);
+				}
+
+				//afficher un film par clic sur bouton
+				function currentSlide(n) {
+  					showSlides(slideIndex = n);
+				}
+
+				//fonctionnalités d'affichage des films dans le carousel
+				function showSlides(n) {
+  					var i;
+  					var slides = document.getElementsByClassName("slide");
+  					var dots = document.getElementsByClassName("dot");
+  					if (n > slides.length) {slideIndex = 1} 
+  					if (n < 1) {slideIndex = slides.length}
+  					for (i = 0; i < slides.length; i++) {
+      					slides[i].style.display = "none"; 
+  					}
+  					for (i = 0; i < dots.length; i++) {
+      					dots[i].className = dots[i].className.replace(" active", "");
+  					}
+  					slides[slideIndex-1].style.display = "block"; 
+  					dots[slideIndex-1].className += " active";
+				}
+
+			
 			</script>
 		
 		</head>
 		
 		<body>
 		
-		<div id='header'>
-		Les prochains films à l'affiche
-		</div>
+			<div id='header'>
+				Les prochains films à l'affiche 
+				<!--<script> 
+					var d = document.getElementById('header');
+					d.append(day)
+				</script> --!>
+			</div>
 		
-		<div class='corps' id='film'></div>
+			<div class='corps' id='film'>		
+				<!-- Fleches gauche(prev) et droite(next) pour faire défiler les films par simple clic -->
+  				<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  				<a class="next" onclick="plusSlides(1)">&#10095;</a>
+			</div>
+			<br>
+
+			<!-- Boutons correspondant chacun à un film -->
+			<div id='boutons' style="text-align:center"></div>
 		
-		<div id='footer'>
-		Master MIASHS
-		<div>
+			<div id='footer'>
+				Master MIASHS
+			<div>
 		
 		</body>
 
