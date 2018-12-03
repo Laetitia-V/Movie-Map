@@ -9,10 +9,10 @@
 			
 			<script>
 			
-				<!-- API donnant accès à une base de données renseignant sur des films (acteur, nom, date de sortie etc.. -->
+				<!-- API donnant accès à une base de données sur les films (acteur, nom, date de sortie etc..) -->
 				<!-- Utilisation principale : données sur les films prochainement à l'affiche -->
 
-				//afficher films que du jour meme par default, proposer a l'utilisateur de modifier date?
+				//
 				var date = new Date()
 				var day = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
 
@@ -25,9 +25,9 @@
 						var myFilm = document.getElementById('film')
 						var boutons = document.getElementById('boutons')
 						
-						//possibilité de recuperer tous les films pour dates demandées ? (ici limité à 6 mais il y en a d'autres)
+						//affichage des 6 prochaines sorties à partir de la date du jour
 						for (var i = 0; i < 6; i++){
-							// Ajout du titre et date de sortie de chaque film -->
+							// Récupération des données title, release_date, poster_path, overview
 							
 							var elt = document.createElement("div")
 							elt.className = "slide"
@@ -37,33 +37,37 @@
 							
 							var dateElt = document.createElement("h3");
 							dateElt.textContent = 'Date de sortie : '+film.results[i].release_date;
+							
+							var a = document.createElement('a');
+							var b = document.createElement("h3");
+							a.appendChild(b);
 
+							// En commentaire pour l'instant car la bande annonce ne fonctionne pas				
+							<!-- var linkText = document.createTextNode("Voir la bande annonce"); -->
+							<!-- a.appendChild(linkText); -->
+							
+							<!-- a.href = "http://services.cineserie.com/v1/search/movies?q=Road%20to%20Christmas&release_date=2018-11-04"; -->
+							
+															
 							var bouton = document.createElement("span");
 							bouton.className = "dot"
 							//ajouter onclick="currentSlide(i)" pour acceder au film en cliquant sur bouton (juste affichage mais fonctionnent pas)
 							
 							elt.appendChild(titreElt);
-							elt.appendChild(dateElt)
-							myFilm.append(elt)
-
-							elt.innerHTML += '<img src=https://image.tmdb.org/t/p/w185_and_h278_bestv2'+film.results[i].poster_path+'>';
-
+							elt.appendChild(dateElt);
+							elt.appendChild(a);
+							myFilm.append(elt);
+							<!-- la fonction stringify caste le champ overview en chaine de caractère -->
+							<!-- Affichage de l'affiche du film et du résumé au survol de l'affiche -->
+							elt.innerHTML += '<img src=https://image.tmdb.org/t/p/w185_and_h278_bestv2'+film.results[i].poster_path+' title='+JSON.stringify(film.results[i].overview)+'>';
+							
 							boutons.append(bouton)
 				
 						}			
 					})
 				})
 
-				<!-- API donnant accès à une base de données renseignant sur des films (bande d'annonce, nom, date de sortie etc.. -->
-				<!-- Utilisation principale : bande d'annonce des films prochainement à l'affiche -->
-				<!-- var title="https://api.themoviedb.org/3/discover/movie?title=Air_Strike&api_key=c5f2613afb0ffca9cfa80e9bb8221eb6" -->
-				<!-- var release_date= -->
-				<!-- var url2 = 'http://services.cineserie.com/v1/search/movies?q=+'title+'&'+release_date+'=2018-10-31' -->
-				<!-- fetch(url2, {mode:'no-cors'}).then(function(response){ -->
-					<!-- response.json().then(function(movie){  -->
-						<!-- console.log(movie) -->
-					<!-- }) -->
-				<!-- }) -->
+				
 
 				
 				//Carousel : 
@@ -107,10 +111,7 @@
 		
 			<div id='header'>
 				Les prochains films à l'affiche 
-				<!--<script> 
-					var d = document.getElementById('header');
-					d.append(day)
-				</script> --!>
+				
 			</div>
 		
 			<div class='corps' id='film'>		
