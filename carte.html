@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Projet</title>
+			
+			<meta http-equiv="Content-Type"content="text/html; charset=UTF-8" /> 
+			<link rel="stylesheet"	href="style.css" type="text/css" media="screen"	/>
+			<script type="text/javascript" src="dom.js" ></script>
+			
+			<script>
+			 function initMap() {
+
+				var map = new google.maps.Map(document.getElementById('map'), {
+				  zoom: 3,
+				  center: {lat: -28.024, lng: 140.887}
+				});
+
+				// Create an array of alphabetical characters used to label the markers.
+				var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+				// Add some markers to the map.
+				// Note: The code uses the JavaScript Array.prototype.map() method to
+				// create an array of markers based on a given "locations" array.
+				// The map() method here has nothing to do with the Google Maps API.
+				var markers = locations.map(function(location, i) {
+				  return new google.maps.Marker({
+					position: location,
+					label: labels[i % labels.length]
+				  });
+				});
+
+				// Add a marker clusterer to manage the markers.
+				var markerCluster = new MarkerClusterer(map, markers,
+					{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+			 }
+			
+			var locations = []
+			//var pays = 'US'
+			//var id = 550
+
+			var url = 'https://api.themoviedb.org/3/discover/movie?primary_release_year=2018&api_key=c5f2613afb0ffca9cfa80e9bb8221eb6';
+
+			fetch(url).then(function(response){
+				response.json().then(function(film){ 
+					console.log(film)
+
+					
+					
+					//films sortis en 2018
+					for (var i = 0; i < film.results.length; i++){
+						//ajouter fonction fetch sur la base movie pour récupérer les pays
+						var id = film.results[i].id;
+						var url3 = 'https://api.themoviedb.org/3/movie/'+id+'?api_key=c5f2613afb0ffca9cfa80e9bb8221eb6';
+
+						fetch(url3).then(function(reponse){
+							reponse.json().then(function(id_film){ 
+								console.log(id_film)
+					
+										// 
+										if (id_film.hasOwnProperty('production_countries'))
+										{
+											console.log(id_film.production_countries[0].iso_3166_1);
+											var pays = id_film.production_countries[0].iso_3166_1;
+											var url2 = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDj7g_f34b6VxNilpJW7vgd9vX74AvK9I4&address='+pays+'&sensor=false'
+
+											fetch(url2).then(function(resp){
+												resp.json().then(function(gps){
+													console.log(gps);
+													locations.push({lat:gps.results.geometry.location.lat, lng:gps.results.geometry.location.lng});
+
+												});
+											
+											});
+										}
+							});
+						
+						});
+						
+					}			
+				});
+			});
+
+
+  
+  
+  
+			</script>
+			<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+			</script>
+			<script async defer
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDj7g_f34b6VxNilpJW7vgd9vX74AvK9I4&callback=initMap">
+			</script>
+			
+			
+			     
+		
+		</head>
+		
+		<body>
+		
+			<div id='header'>
+				Pays de production des films sortis en 2018
+				
+			</div>
+		
+			<div class='corps' id='map'>		
+				
+			</div>
+			<br>
+
+					
+			<div id='footer'>
+				Master MIASHS
+			<div>
+		
+		</body>
+
+	</html>
