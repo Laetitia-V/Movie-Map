@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 	<html>
 		<head>
-			<title>Projet</title>
-			
-			<meta http-equiv="Content-Type"content="text/html; charset=UTF-8" /> 
-			<link rel="stylesheet"	href="style.css" type="text/css" media="screen"	/>
-			<script type="text/javascript" src="dom.js" ></script>
-			
+			<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+			<meta charset="utf-8">
+			<title>Map</title>
+			<style>
+			  /* A intégrer dans le css */
+			  #map {
+				height: 100%;
+			  }
+			  /* Optional: Makes the sample page fill the window. */
+			  html, body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			  }
+			</style>
+		 </head>
+
+		<body>
+			<div id="map"></div>
 			<script>
 			 function initMap() {
 
@@ -35,9 +48,7 @@
 			 }
 			
 			var locations = []
-			//var pays = 'US'
-			//var id = 550
-
+			
 			var url = 'https://api.themoviedb.org/3/discover/movie?primary_release_year=2018&api_key=c5f2613afb0ffca9cfa80e9bb8221eb6';
 
 			fetch(url).then(function(response){
@@ -48,45 +59,52 @@
 					
 					//films sortis en 2018
 					for (var i = 0; i < film.results.length; i++){
-						//ajouter fonction fetch sur la base movie pour récupérer les pays
+						//recherche du pays de production des films à partir de l'id
 						var id = film.results[i].id;
-						var url3 = 'https://api.themoviedb.org/3/movie/'+id+'?api_key=c5f2613afb0ffca9cfa80e9bb8221eb6';
+						var url2 = 'https://api.themoviedb.org/3/movie/'+id+'?api_key=c5f2613afb0ffca9cfa80e9bb8221eb6';
 
-						fetch(url3).then(function(reponse){
+						fetch(url2).then(function(reponse){
 							reponse.json().then(function(id_film){ 
 								console.log(id_film)
 					
-										// 
+										// test de l'existence du pays de production
 										if (id_film.hasOwnProperty('production_countries'))
 										{
-											console.log(id_film.production_countries[0].iso_3166_1);
+											
+											//recherche des coordonnées GPS du pays à partir de son code pays (US, DE,..) en utilisant l'api google geocode
 											var pays = id_film.production_countries[0].iso_3166_1;
-											var url2 = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDj7g_f34b6VxNilpJW7vgd9vX74AvK9I4&address='+pays+'&sensor=false'
+											var url3 = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDj7g_f34b6VxNilpJW7vgd9vX74AvK9I4&address='+pays+'&sensor=false'
 
-											fetch(url2).then(function(resp){
+											fetch(url3).then(function(resp){
 												resp.json().then(function(gps){
-													console.log(gps);
-													locations.push({lat:gps.results.geometry.location.lat, lng:gps.results.geometry.location.lng});
-
+													//remplissage du tableau locations contenant les coordonnées GPS (lat, lng)
+													locations.push({lat:gps.results[0].geometry.location.lat, lng:gps.results[0].geometry.location.lng});
+													console.log(locations);
+													return locations;
 												});
 											
 											});
+										
 										}
 							});
 						
+
 						});
 						
-					}			
+					}
+					
+					
 				});
 			});
 
-
   
   
   
 			</script>
+			// appel de la fonction de création des markers 
 			<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
 			</script>
+			// appel de l'api google pour afficher la carte
 			<script async defer
 			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDj7g_f34b6VxNilpJW7vgd9vX74AvK9I4&callback=initMap">
 			</script>
@@ -94,25 +112,8 @@
 			
 			     
 		
-		</head>
-		
-		<body>
-		
-			<div id='header'>
-				Pays de production des films sortis en 2018
-				
-			</div>
-		
-			<div class='corps' id='map'>		
-				
-			</div>
-			<br>
-
-					
-			<div id='footer'>
-				Master MIASHS
-			<div>
-		
 		</body>
+		
+		
 
 	</html>
