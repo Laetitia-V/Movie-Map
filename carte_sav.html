@@ -23,22 +23,19 @@
 		<script>
 		var locations = [];
 		var date = new Date();
-		var year = date.getFullYear();
-		var month = date.getMonth();
-		
-		
-		
-		
-		
-		<!-- for (var p = 1; p < 3; p++){	 -->
+		var j15 = new Date(date.setDate(date.getDate()+15))
+		var day15 = j15.getFullYear()+"-"+(j15.getMonth()+1)+"-"+j15.getDate()
+	
+		//limite des 40 films => 2 pages
+		for (var p = 1; p < 3; p++){	 
 			
-			var url = 'https://api.themoviedb.org/3/discover/movie?primary_release_year=2018&page=1&with_genres=878&sort_by=vote_average.desc&api_key=c5f2613afb0ffca9cfa80e9bb8221eb6';
+			//recherche des films des 15 prochains jours
+			var url = 'https://api.themoviedb.org/3/discover/movie?primary_release_date.gte='+day+'&primary_release_date.lte='+day15+'&api_key=c5f2613afb0ffca9cfa80e9bb8221eb6';
 
 			fetch(url).then(function(response){
 				response.json().then(function(film){ 
 					console.log(film)
-
-					
+	
 					
 					//films sortis en 2018
 					for (var i = 0; i < film.results.length; i++){
@@ -64,7 +61,7 @@
 													//remplissage du tableau locations contenant les coordonnées GPS (lat, lng)
 													locations.push({lat:gps.results[0].geometry.location.lat, lng:gps.results[0].geometry.location.lng});
 													console.log(locations);
-													//return locations;
+													return locations;
 												});
 											
 											});
@@ -80,7 +77,7 @@
 					
 				});
 			});
-		//}
+		}
 
 		function initMap() {
 			//console.log(locations)
@@ -105,11 +102,10 @@
 
 			// Add a marker clusterer to manage the markers.
 			var markerCluster = new MarkerClusterer(map, markers,
-				{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+				{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js'});
 		}
 		
-		//console.log(locations);
-		//return locations;
+
 		</script>
 		<!-- appel de la fonction de création des markers  -->
 		<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
