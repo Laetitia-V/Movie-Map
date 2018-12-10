@@ -28,41 +28,85 @@
 						//affichage des 6 prochaines sorties à partir de la date du jour
 						for (var i = 0; i < 6; i++){
 							// Récupération des données title, release_date, poster_path, overview
-							
-							var elt = document.createElement("div")
-							elt.className = "slide"
-							
-							var titreElt = document.createElement("h2");
-							titreElt.textContent = film.results[i].title;
-							
-							var dateElt = document.createElement("h3");
-							dateElt.textContent = 'Date de sortie : '+film.results[i].release_date;
-							
-							var a = document.createElement('a');
-							var b = document.createElement("h3");
-							a.appendChild(b);
+							// test de la présence de l'affiche, pour ne pas afficher les films qui n'en ont pas
+							if (film.results[i].poster_path != null)
+							{
+								//récupération de l'id du film pour réinterroger l'api et obtenir plus de détails
+								var id = film.results[i].id;
+								var url2 = 'https://api.themoviedb.org/3/movie/'+id+'?api_key=c5f2613afb0ffca9cfa80e9bb8221eb6';
+								
+								var elt = document.createElement("div")
+								elt.className = "slide"
+								
+								var titreElt = document.createElement("h2");
+								titreElt.textContent = film.results[i].title;
+								
+								var dateElt = document.createElement("h3");
+								dateElt.textContent = 'Date de sortie : '+film.results[i].release_date;
+													
+								elt.appendChild(titreElt);
+								elt.appendChild(dateElt);
+								
+														
+								//recherche du genre, tag et lien pour affichage
+								fetch(url2).then(function(reponse){
+									reponse.json().then(function(id_film){ 
+										console.log(id_film)
+										
+										var genre = id_film.genres[0].name;
+										
+										elt.innerHTML += '<p>Genre : '+genre+'</p>';
+										
+										if (id_film.homepage != null)
+										{
+											var page = id_film.homepage;
+											elt.innerHTML += '<p>Lien vers le site : '+page+'</p>';
+										}
+										if (id_film.tagline != "")
+										{
+											var tag = id_film.tagline;
+											elt.innerHTML += '<p>Tag : '+tag+'</p>';
+										}
+										
+										
+									});
+								});
+								
+									
+										
+								
+								
+								// En commentaire pour l'instant car la bande annonce ne fonctionne pas	
+								//var a = document.createElement('a');
+								//var b = document.createElement("h3");
+								//a.appendChild(b);
 
-							// En commentaire pour l'instant car la bande annonce ne fonctionne pas				
-							<!-- var linkText = document.createTextNode("Voir la bande annonce"); -->
-							<!-- a.appendChild(linkText); -->
-							
-							<!-- a.href = "http://services.cineserie.com/v1/search/movies?q=Road%20to%20Christmas&release_date=2018-11-04"; -->
-							
-															
-							var bouton = document.createElement("span");
-							bouton.className = "dot"
-							//ajouter onclick="currentSlide(i)" pour acceder au film en cliquant sur bouton (juste affichage mais fonctionnent pas)
-							
-							elt.appendChild(titreElt);
-							elt.appendChild(dateElt);
-							elt.appendChild(a);
-							myFilm.append(elt);
-							<!-- la fonction stringify caste le champ overview en chaine de caractère -->
-							<!-- Affichage de l'affiche du film et du résumé au survol de l'affiche -->
-							elt.innerHTML += '<img src=https://image.tmdb.org/t/p/w185_and_h278_bestv2'+film.results[i].poster_path+' title='+JSON.stringify(film.results[i].overview)+'>';
-							
-							boutons.append(bouton)
-				
+								<!-- var linkText = document.createTextNode("Voir la bande annonce"); -->
+								<!-- a.appendChild(linkText); -->
+								
+								<!-- a.href = "http://services.cineserie.com/v1/search/movies?q=Road%20to%20Christmas&release_date=2018-11-04"; -->
+								
+								//
+																
+								var bouton = document.createElement("span");
+								bouton.className = "dot"
+								//ajouter onclick="currentSlide(i)" pour acceder au film en cliquant sur bouton (juste affichage mais fonctionnent pas)
+								
+								
+																
+								//elt.appendChild(a);
+								
+								<!-- la fonction stringify caste le champ overview en chaine de caractère -->
+								<!-- Affichage de l'affiche du film et du résumé au survol de l'affiche -->
+								elt.innerHTML += '<img src=https://image.tmdb.org/t/p/w185_and_h278_bestv2'+film.results[i].poster_path+' title='+JSON.stringify(film.results[i].overview)+'>';
+								
+								
+								myFilm.append(elt);
+								boutons.append(bouton);
+								
+								
+								
+							}
 						}			
 					})
 				})
