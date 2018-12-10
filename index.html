@@ -12,7 +12,6 @@
 				<!-- API donnant accès à une base de données sur les films (acteur, nom, date de sortie etc..) -->
 				<!-- Utilisation principale : données sur les films prochainement à l'affiche -->
 
-				//
 				var date = new Date()
 				var day = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
 
@@ -37,16 +36,6 @@
 								
 								var elt = document.createElement("div")
 								elt.className = "slide"
-								
-								var titreElt = document.createElement("h2");
-								titreElt.textContent = film.results[i].title;
-								
-								var dateElt = document.createElement("h3");
-								dateElt.textContent = 'Date de sortie : '+film.results[i].release_date;
-													
-								elt.appendChild(titreElt);
-								elt.appendChild(dateElt);
-								
 														
 								//recherche du genre, tag et lien pour affichage
 								fetch(url2).then(function(reponse){
@@ -54,9 +43,10 @@
 										console.log(id_film)
 										
 										var genre = id_film.genres[0].name;
-										
-										elt.innerHTML += '<p>Genre : '+genre+'</p>';
-										
+										<!-- elt.innerHTML += '<p>Genre : '+genre+'</p>'; -->
+										var title=id_film.title;
+										var date=id_film.release_date;
+						
 										if (id_film.homepage != null)
 										{
 											var page = id_film.homepage;
@@ -68,13 +58,27 @@
 											elt.innerHTML += '<p>Tag : '+tag+'</p>';
 										}
 										
+										<!-- var titreElt = document.createElement("h2"); -->
+										<!-- titreElt.textContent = film.results[i].title; -->
+										
+										var titleElt = document.createElement("h3");
+										titleElt.textContent = 'Titre : '+title;
+										
+										var dateElt = document.createElement("h3");
+										dateElt.textContent = 'date : '+date;
+									
+										var genreElt = document.createElement("h3");
+										genreElt.textContent = 'Genre : '+genre
+									
+										elt.appendChild(titleElt);
+										elt.appendChild(dateElt);
+										elt.appendChild(genreElt);
+										
+										elt.innerHTML += '<img src=https://image.tmdb.org/t/p/w185_and_h278_bestv2'+id_film.poster_path+' title='+JSON.stringify(id_film.overview)+'>';
 										
 									});
-								});
-								
 									
-										
-								
+								});
 								
 								// En commentaire pour l'instant car la bande annonce ne fonctionne pas	
 								//var a = document.createElement('a');
@@ -91,27 +95,22 @@
 								var bouton = document.createElement("span");
 								bouton.className = "dot"
 								//ajouter onclick="currentSlide(i)" pour acceder au film en cliquant sur bouton (juste affichage mais fonctionnent pas)
-								
-								
-																
+											
 								//elt.appendChild(a);
 								
 								<!-- la fonction stringify caste le champ overview en chaine de caractère -->
 								<!-- Affichage de l'affiche du film et du résumé au survol de l'affiche -->
-								elt.innerHTML += '<img src=https://image.tmdb.org/t/p/w185_and_h278_bestv2'+film.results[i].poster_path+' title='+JSON.stringify(film.results[i].overview)+'>';
 								
+								elt.innerHTML += '<img src=https://image.tmdb.org/t/p/w185_and_h278_bestv2'+film.results[i].poster_path+' title='+JSON.stringify(film.results[i].overview)+'>';
 								
 								myFilm.append(elt);
 								boutons.append(bouton);
-								
-								
 								
 							}
 						}			
 					})
 				})
 
-				
 				//Carousel : 
 				
 				var slideIndex = 1;
@@ -151,9 +150,13 @@
 		
 		<body>
 		
-			<div id='header'>
-				Les prochains films à l'affiche 
-				
+			<div >
+				<table id='header'>
+					<tr>
+						<th id="menu"><a href="index.html" target='_blank'>Prochains films à l'affiche</a></th>
+						<th id="menu"><a href="carte_sav.html" target='_blank'>Carte</a></th>
+					</tr>
+				</table>
 			</div>
 		
 			<div class='corps' id='film'>		
