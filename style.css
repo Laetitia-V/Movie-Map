@@ -10,14 +10,14 @@ body{
 	background: #dea ;
 }
 
-div#conteneur
-{
-	width: 770px ;
-	margin: 0 auto ;
-	text-align: left ;
-	border: 2px solid #ab4 ;
-	background: #fff ;
-}
+/* div#conteneur */
+/* { */
+	/* width: 770px ; */
+	/* margin: 0 auto ; */
+	/* text-align: left ; */
+	/* border: 2px solid #ab4 ; */
+	/* background: #fff ; */
+/* } */
 
 
 #header{
@@ -38,11 +38,11 @@ div#conteneur
 
 }
 
-#film {
-  max-width: 1000px;
-  margin: auto;
-  text-align: center;
-}
+/* #film { */
+  /* max-width: 1000px; */
+  /* margin: auto; */
+  /* text-align: left; */
+/* } */
 
 img{
 	width:35%;
@@ -97,4 +97,27 @@ img{
 /*Apparence du bouton activé différente */
 .active, .dot:hover {
   background-color: #717171;
+}
+
+#div_table{
+  position:absolute;
+  top:28%;
+  left:24%;
+  width:59%;
+  z-index:9;
+  border:1px solid #FFFF00;
+}
+#div_table div{
+  font-family : Verdana, Arial;
+  font-size:0.8em;
+  float:left;
+  width:50%;
+  height:80px;
+  text-align:center;
+}
+.col_1{
+  background-color:#FF0;
+}
+.col_2{
+  background-color:#0F0;
 }
