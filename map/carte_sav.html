@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+	<html class="htmlmap">
+		<head>
+			<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+			<link rel="stylesheet"	href="../style.css" type="text/css" media="screen"	/>
+			<meta charset="utf-8">
+			<title>Map</title>
+			<!-- <style> -->
+			  <!-- /* A intégrer dans le css */ -->
+			  <!-- #map { -->
+				<!-- height: 100%; -->
+			  <!-- } -->
+			  <!-- /* Optional: Makes the sample page fill the window. */ -->
+			  <!-- html, body { -->
+				<!-- height: 100%; -->
+				<!-- margin: 0; -->
+				<!-- padding: 0; -->
+			  <!-- } -->
+			<!-- </style> -->
+		 </head>
+
+		<body class="bodymap">
+			<div>
+				<table id='header'>
+					<tr>
+						<th id="menu"><a href="../index.html">Prochains films à l'affiche</a></th>
+						<th id="menu"><a href="carte_sav.html" >Carte</a></th>
+					</tr>
+				</table>
+			</div>
+
+			<div id="map"></div>
+			<script type='text/javascript' src='../config.js'></script>
+			<script type="text/javascript" src="map.js"></script>
+	
+		<!-- appel de l'api google pour afficher la carte -->
+		<script async defer 
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDj7g_f34b6VxNilpJW7vgd9vX74AvK9I4&callback=initMap">
+		</script>
+		
+			
+	</body>
+	
+	<div id='footer'>Master MIASHS</div>
+	
+</html>
