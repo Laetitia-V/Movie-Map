@@ -9,20 +9,22 @@
 		</head>
 		
 		<body>
+			<div class='titre'>
+				titre
+			</div>
 		
 			<div >
 				<table id='header'>
 					<tr>
-						<th id="menu"><a href="index.html"'>Prochains films à l'affiche</a></th>
-						<th id="menu"><a href="map/carte_sav.html"'>Carte</a></th>
+						<th id="menu"><a href="index.html">Prochains films à l'affiche</a></th>
+						<th id="menu"><a href="map/carte_sav.html">Carte</a></th>
 					</tr>
 				</table>
 			</div>
-			
-			<script type='text/javascript' src='config.js'></script>
-			<script type="text/javascript" src="movie/movie.js"></script>
-		
-			<div class='corps' id='film'>		
+			<div id='film'>	
+				<script type='text/javascript' src='config.js'></script>
+				<script type="text/javascript" src="movie/movie.js"></script>
+				
 				<!-- Fleches gauche(prev) et droite(next) pour faire défiler les films par simple clic -->
   				<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
   				<a class="next" onclick="plusSlides(1)">&#10095;</a>

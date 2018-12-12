@@ -1,15 +1,6 @@
-html{
-	margin: auto;
-	background-color: white;
-}
-
-.htmlmap, .bodymap{
+html, body{
 	height: 100%;
-}
-
-body{
-	margin: 10px 0 ;
-	padding:0 ;
+	margin: auto;
 	text-align: center ;
 	font: 0.8em "Trebuchet MS", helvetica, sans-serif ;
 	background: #dea ;
@@ -48,16 +39,13 @@ th{
 	border : solid 2px black;
 	background-color: #F1F2F2  ;
 	margin-bottom: 30px;
+	font-size: 1.3em;
 }
 
 #film {
   max-width: 1000px;
+  text-align: center;
   margin: auto;
-  text-align: left;
-}
-
-img{
-	width:35%;
 }
 
 /* Fleche de defilement */
@@ -119,3 +107,18 @@ img{
 	height: 80%;
 	margin: 10px;
 }
+
+.titre{
+	font: 4.5em "Trebuchet MS", helvetica, sans-serif ;
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,5 @@
-<!-- API donnant accès à une base de données sur les films (acteur, nom, date de sortie etc..) -->
-<!-- Utilisation principale : données sur les films prochainement à l'affiche -->
+// <!-- API donnant accès à une base de données sur les films (acteur, nom, date de sortie etc..) -->
+// <!-- Utilisation principale : données sur les films prochainement à l'affiche -->
 
 //variable qui récupère la clé de l'API de themoviedb enregistrée dans config.js
 var movie_key = config.MOVIE_KEY
@@ -34,7 +34,7 @@ fetch(url).then(function(response){
 						console.log(id_film)
 										
 						var genre = id_film.genres[0].name;
-						<!-- elt.innerHTML += '<p>Genre : '+genre+'</p>'; -->
+						// <!-- elt.innerHTML += '<p>Genre : '+genre+'</p>'; -->
 						var title=id_film.title;
 						var date=id_film.release_date;
 						
@@ -48,8 +48,8 @@ fetch(url).then(function(response){
 							elt.innerHTML += '<p>Tag : '+tag+'</p>';
 						}
 										
-						<!-- var titreElt = document.createElement("h2"); -->
-						<!-- titreElt.textContent = film.results[i].title; -->
+						// <!-- var titreElt = document.createElement("h2"); -->
+						// <!-- titreElt.textContent = film.results[i].title; -->
 										
 						var titleElt = document.createElement("h3");
 						titleElt.textContent = 'Titre : '+title;
@@ -75,12 +75,12 @@ fetch(url).then(function(response){
 				//var b = document.createElement("h3");
 				//a.appendChild(b);
 
-				<!-- var linkText = document.createTextNode("Voir la bande annonce"); -->
-				<!-- a.appendChild(linkText); -->
+				// <!-- var linkText = document.createTextNode("Voir la bande annonce"); -->
+				// <!-- a.appendChild(linkText); -->
 								
-				<!-- a.href = "http://services.cineserie.com/v1/search/movies?q=Road%20to%20Christmas&release_date=2018-11-04"; -->
+				// <!-- a.href = "http://services.cineserie.com/v1/search/movies?q=Road%20to%20Christmas&release_date=2018-11-04"; -->
 								
-				//
+				
 															
 				var bouton = document.createElement("span");
 				bouton.className = "dot"
@@ -88,10 +88,10 @@ fetch(url).then(function(response){
 											
 				//elt.appendChild(a);
 								
-				<!-- la fonction stringify caste le champ overview en chaine de caractère -->
-				<!-- Affichage de l'affiche du film et du résumé au survol de l'affiche -->
+				// <!-- la fonction stringify caste le champ overview en chaine de caractère -->
+				// <!-- Affichage de l'affiche du film et du résumé au survol de l'affiche -->
 								
-				elt.innerHTML += '<img src=https://image.tmdb.org/t/p/w185_and_h278_bestv2'+film.results[i].poster_path+' title='+JSON.stringify(film.results[i].overview)+'>';
+				// elt.innerHTML += '<img src=https://image.tmdb.org/t/p/w185_and_h278_bestv2'+film.results[i].poster_path+' title='+JSON.stringify(film.results[i].overview)+'>';
 								
 				myFilm.append(elt);
 				boutons.append(bouton);
