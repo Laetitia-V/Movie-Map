@@ -15,16 +15,21 @@ div#conteneur
 	background: #fff ;
 }
 
-
 #header{
-	background-color: #F1F2F2  ;
-	font-size: 2.3em;
-	border-collapse: collapse;
+	background-image: linear-gradient(to right, #633ea7, #56c693);
+	position: fixed;
+    height: 60px;
+    top: 0px;
+    bottom: 0px;
+    font-size: 2.3em;
 	width: 100%;
+	font: 3.5em "Trebuchet MS", helvetica, sans-serif ;
 }
 
 a{
 	text-decoration: none;
+	color:white;
+	margin-left:40px;
 }
 
 th{
@@ -99,18 +104,28 @@ th{
   background-color: #717171;
 }
 
-#menu{
-	width: 25%;
+.menu{
+	text-align:right;
+	margin-right:30px;
+	margin-top:-70px;
+	float:right;
+	color:white;
+	font-size:20px;
 }
 
 #map {
+	
 	height: 80%;
-	margin: 10px;
+	margin-top: 60px;
 }
 
 .titre{
-	font: 4.5em "Trebuchet MS", helvetica, sans-serif ;
+	 text-align:left;
+	 margin-left:30px;
+	 margin-top:10px;
+	 color: white; 
 }
+
 
 
 
