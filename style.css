@@ -69,8 +69,14 @@ th{
 }
 
 #map {	
-	height: 87%;
-	margin-top: 60px;
+	height: 65%;
+	margin-top: 120px;
+}
+.titre_map{
+	 text-align:left;
+	 margin-left:30px;
+	 margin-top:10px;
+	 color: white; 
 }
 
 .titre{
