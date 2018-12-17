@@ -3,11 +3,10 @@ html, body{
 	margin: auto;
 	text-align: center ;
 	font: 0.8em "Trebuchet MS", helvetica, sans-serif ;
-	background: #dea ;
+	background: DarkGray ;
 }
 
-div#conteneur
-{
+div#conteneur{
 	width: 770px ;
 	margin: 0 auto ;
 	text-align: left ;
@@ -42,66 +41,22 @@ th{
 #footer{
 	padding: 5px;
 	border : solid 2px black;
-	background-color: #F1F2F2  ;
-	margin-bottom: 30px;
+	background-image: linear-gradient(to right, #633ea7, #56c693);
 	font-size: 1.3em;
 }
 
-#film {
-  max-width: 1000px;
-  text-align: center;
-  margin: auto;
+#films {
+	margin-top: 100px;
+	text-align: center;
+	width: 100%;
 }
 
-/* Fleche de defilement */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: black;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-}
-
-/*fleche de gauche*/
-.prev{
-	padding-left:300px;
-	left:0;
-}
-
-/*fleche de droite*/
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-  padding-right:300px;
-}
-
-/* changement apparence des fleche lorsqu'on passe le curseur dessus*/
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
-
-
-/* Boutons */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-/*Apparence du bouton activé différente */
-.active, .dot:hover {
-  background-color: #717171;
+.film {
+	display: inline-block;
+	margin: 10px;
+	width:200px; 
+	float: top;
+	overflow: scroll;
 }
 
 .menu{
@@ -113,9 +68,8 @@ th{
 	font-size:20px;
 }
 
-#map {
-	
-	height: 80%;
+#map {	
+	height: 87%;
 	margin-top: 60px;
 }
 
@@ -126,6 +80,11 @@ th{
 	 color: white; 
 }
 
+h2{
+	font-weight: bold;
+	font-size: 16px;
+	color: #633ea7;
+}
 
 
 
