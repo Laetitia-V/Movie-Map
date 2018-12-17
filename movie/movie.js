@@ -6,17 +6,18 @@ var movie_key = config.MOVIE_KEY
 				
 var date = new Date()
 var day = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+var j7 = new Date(date.setDate(date.getDate()+15))
+var day7 = j7.getFullYear()+"-"+(j7.getMonth()+1)+"-"+j7.getDate()
 
-var url = 'https://api.themoviedb.org/3/discover/movie?primary_release_date.gte='+day+'&primary_release_date.lte='+day+'&api_key='+movie_key;
-				
+var url = 'https://api.themoviedb.org/3/discover/movie?primary_release_date.gte='+day+'&primary_release_date.lte='+day7+'&api_key='+movie_key;
+//recherche des films à sortir dans les 7 prochains jours				
 fetch(url).then(function(response){
 	response.json().then(function(film){ 
-		console.log(film)
-
+		
 		var myFilm = document.getElementById('film')
 		var boutons = document.getElementById('boutons')
 						
-		//affichage des 6 prochaines sorties à partir de la date du jour
+		//affichage des 6 prochaines sorties 
 		for (var i = 0; i < 6; i++){
 			// Récupération des données title, release_date, poster_path, overview
 			// test de la présence de l'affiche, pour ne pas afficher les films qui n'en ont pas
