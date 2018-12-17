@@ -54,9 +54,9 @@ th{
 .film {
 	display: inline-block;
 	margin: 10px;
-	width:200px; 
+	width:250px; 
+	height:450px;
 	float: top;
-	overflow: scroll;
 }
 
 .menu{

@@ -40,14 +40,20 @@ fetch(url).then(function(response){
 						var title=id_film.title;
 						var date=id_film.release_date;
 						
+						// transformation de la date pour affichage au format français
+						var annee = date.slice(0, 4);
+						var mois = date.slice(5, 7);
+						var jour = date.slice(8, 10);
+						var date_f = jour + '-' + mois + '-' + annee;
+						
 						if (id_film.homepage != null){
 							var page = id_film.homepage;
-							elt.innerHTML += '<p>Lien vers le site : '+page+'</p>';
+							elt.innerHTML += '<p>'+page+'</p>';
 						}
 										
 						if (id_film.tagline != ""){
 							var tag = id_film.tagline;
-							elt.innerHTML += '<p>Tag : '+tag+'</p>';
+							elt.innerHTML += '<p>'+tag+'</p>';
 						}
 										
 						// <!-- var titreElt = document.createElement("h2"); -->
@@ -57,7 +63,8 @@ fetch(url).then(function(response){
 						titleElt.textContent = title;
 										
 						var dateElt = document.createElement("h3");
-						dateElt.textContent = 'Date : '+date;
+						
+						dateElt.textContent = 'Sortie : '+date_f;
 									
 						var genreElt = document.createElement("h3");
 						genreElt.textContent = 'Genre : '+genre
