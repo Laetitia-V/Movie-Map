@@ -7,11 +7,11 @@ Description du projet : Création d'un mashup permettant de connaitre les films 
 
 Utilisation de 2 API :
 
-*** themoviedb pour la recherche des films sortis sur une période donnée :
+*** themoviedb pour la recherche des films sortis sur une période donnée :        
 -> les films des 7 prochains jours pour la page d'accueil : avec affiche de film, titre du film, genre, date de sortie, lien vers le site officiel, tag et résumé du film au survol de l'affiche    
 -> tous les films sortis en 2018 (avec une boucle sur 50 pages de 20 films pour ne pas avoir des temps de réponse trop long) pour afficher le nombre de films produit par pays   
 
-Exemple d'url utilisée dans un fetch pour rechercher des films entre 2 dates de sortie :
+Exemple d'url utilisée dans un fetch pour rechercher des films entre 2 dates de sortie :             
 https://api.themoviedb.org/3/discover/movie?primary_release_date.gte='+day+'&primary_release_date.lte='+day7+'&api_key='+movie_key;
      
      
