@@ -70,13 +70,17 @@ th{
 
 #map {	
 	height: 65%;
-	margin-top: 120px;
+	width: 900px;
+	margin : auto;
+	margin-top: 150px;
+	position : static;
 }
-.titre_map{
-	 text-align:left;
-	 margin-left:30px;
-	 margin-top:10px;
-	 color: white; 
+
+.sous_titre{
+	text-align:center;
+	margin-left:20px;
+	margin-top:8px;
+	color: white; 
 }
 
 .titre{
