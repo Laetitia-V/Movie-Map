@@ -48,7 +48,7 @@ fetch(url).then(function(response){
 						
 						if (id_film.homepage != null){
 							var page = id_film.homepage;
-							elt.innerHTML += '<p>'+page+'</p>';
+							elt.innerHTML += '<a href="'+page+'"><p>'+page+'</p></a>';
 						}
 										
 						if (id_film.tagline != ""){
