@@ -24,14 +24,7 @@ if (sessionStorage.getItem('initStorage') !== 'true') {
         fetch_function(url_movie);
 
     }
-} else {
-
-
 }
-
-// function testerUrl($url) {
-    // alert($url);
-// }
 
 function fetch_function(url_movie) {
     //alert(url_movie);
