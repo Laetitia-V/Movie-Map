@@ -70,7 +70,7 @@ th{
 
 #map {	
 	height: 65%;
-	width: 900px;
+	width: 1200px;
 	margin : auto;
 	margin-top: 60px;
 	margin-bottom: 30px;
@@ -82,7 +82,7 @@ th{
 	margin-left:20px;
 	margin-top:90px;
 	color: white; 
-	font-size:50px;
+	font-size:40px;
 	font-weight: bold;
 }
 
