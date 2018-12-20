@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+			<link rel="stylesheet"	href="../style.css" type="text/css" media="screen"	/>
+			<meta charset="utf-8">
+			<title>Map</title>
+
+		 </head>
+
+		<body>
+			<div id="header">
+				<p class='titre'>
+					Movie n' Map
+				<p class='menu'>
+					<a href="../index.html">Prochains films à l'affiche</a>
+					<a href="carte.html">Carte Google</a>
+				</p>
+
+				</p>
+			</div>
+			
+			<div class='sous_titre'>
+				Les pays de production des films sortis en 2018
+			</div>
+				
+			<div id="map">
+				<script type='text/javascript' src='../config.js'></script>
+				<script type="text/javascript" src="map.js"></script>
+				<script type="text/javascript" src="markerclusterer.js"></script>
+				<!-- appel de l'api google pour afficher la carte -->
+				<script async defer 
+					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDj7g_f34b6VxNilpJW7vgd9vX74AvK9I4&callback=initMap">
+				</script>
+			</div>
+			<div id='footer'> 
+				Master MIASHS 2018-2019 - Intégration de données connectées <br>
+				Réalisé par Alexia Brocero, Maryse Bichon-Nougaillac et Laëtitia Viau.
+			</div>
+			
+		</body>
+	
+	
+	
+</html>
