@@ -3,9 +3,9 @@ Projet du module "Intégration de données connectées" par Maryse Nougaillac, A
 
 https://laetitia-v.github.io/Movie-Map/
 
-Description du projet : Création d'un mashup permettant de connaitre les films qui vont sortir dans les 7 prochains jours et de visualiser sur une carte les pays de production des films sortis en 2018. L'affichage sur la carte Google se fait à travers des markers (point affichés sur une carte) et des markerclusters qui regroupent les markers d'un même point.
+**Description du projet** : Création d'un mashup permettant de connaitre les films qui vont sortir dans les 7 prochains jours et de visualiser sur une carte les pays de production des films sortis en 2018. L'affichage sur la carte Google se fait à travers des markers (point affichés sur une carte) et des markerclusters qui regroupent les markers d'un même point. **Faire un refresh de la page si pas de données affichées.**
 
-Utilisation de 3 API :
+**Utilisation de 3 API :**
 
 1) **themoviedb** pour la recherche des films sortis sur une période donnée :       
 -> les films des 7 prochains jours pour la page d'accueil : avec affiche de film, titre du film, genre, date de sortie, lien vers le site officiel, tag et **résumé du film au survol de l'affiche**    
